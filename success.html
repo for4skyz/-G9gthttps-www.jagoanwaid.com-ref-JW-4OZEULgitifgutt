@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Berhasil — PteroFsCode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0f1419; --bg-secondary: #1a1f2e; --bg-card: #1e2532;
+            --bg-input: #151b26; --border: #2a3441;
+            --text-primary: #ffffff; --text-secondary: #8b92a0;
+            --accent: #ef4444; --green: #22c55e;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; }
+
+        nav {
+            background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem; display: flex; align-items: center; gap: 0.75rem;
+        }
+        .logo-icon { width: 36px; height: 36px; }
+        .logo-icon svg { fill: var(--text-primary); }
+        .logo-text { font-size: 1.3rem; font-weight: 700; }
+
+        .main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+
+        /* Loading state */
+        .loading-wrap { text-align: center; }
+        .spinner { width: 52px; height: 52px; border: 4px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 1.5rem; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-wrap h2 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .loading-wrap p  { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* Success card */
+        .success-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 20px; max-width: 520px; width: 100%;
+            overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .card-top {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            padding: 2rem; text-align: center;
+        }
+        .checkmark {
+            width: 64px; height: 64px; background: rgba(255,255,255,0.15);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        .checkmark svg { width: 32px; height: 32px; stroke: #fff; fill: none; }
+        .card-top h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.3rem; }
+        .card-top p  { font-size: 0.9rem; opacity: 0.85; }
+
+        .card-body { padding: 1.75rem; }
+
+        .warning-box {
+            background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25);
+            border-radius: 10px; padding: 0.9rem 1.1rem; margin-bottom: 1.5rem;
+            font-size: 0.85rem; color: #ef4444; display: flex; gap: 0.6rem; align-items: flex-start;
+        }
+        .warning-box svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; stroke: #ef4444; fill: none; }
+
+        .cred-label {
+            font-size: 0.78rem; font-weight: 600; color: var(--text-secondary);
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;
+        }
+        .cred-grid { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+
+        .cred-row {
+            background: var(--bg-input); border: 1px solid var(--border);
+            border-radius: 10px; padding: 0.75rem 1rem;
+            display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;
+        }
+        .cred-row-left { display: flex; flex-direction: column; gap: 0.15rem; }
+        .cred-row-left span:first-child { font-size: 0.75rem; color: var(--text-secondary); }
+        .cred-row-left span:last-child  { font-size: 0.95rem; font-weight: 600; font-family: monospace; word-break: break-all; }
+
+        .copy-btn {
+            flex-shrink: 0; background: var(--bg-secondary); border: 1px solid var(--border);
+            border-radius: 7px; padding: 0.35rem 0.7rem; color: var(--text-secondary);
+            font-size: 0.78rem; font-family: 'Inter', sans-serif; cursor: pointer;
+            transition: all 0.2s; white-space: nowrap;
+        }
+        .copy-btn:hover  { border-color: var(--accent); color: var(--text-primary); }
+        .copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+        .btn-panel {
+            display: block; width: 100%; padding: 0.95rem;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border: none; border-radius: 12px; color: #fff;
+            font-size: 1rem; font-weight: 700; font-family: 'Inter', sans-serif;
+            cursor: pointer; text-decoration: none; text-align: center;
+            transition: all 0.3s; margin-bottom: 0.75rem;
+        }
+        .btn-panel:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(239,68,68,0.4); }
+
+        .btn-history {
+            display: block; width: 100%; padding: 0.75rem;
+            background: transparent; border: 1px solid var(--border);
+            border-radius: 12px; color: var(--text-secondary);
+            font-size: 0.9rem; font-family: 'Inter', sans-serif;
+            cursor: pointer; text-decoration: none; text-align: center;
+            transition: all 0.2s;
+        }
+        .btn-history:hover { border-color: var(--accent); color: var(--text-primary); }
+
+        /* Error state */
+        .error-wrap { text-align: center; max-width: 440px; }
+        .error-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .error-wrap h2 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .error-wrap p  { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .btn-retry {
+            display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.75rem;
+            background: var(--accent); color: #fff; border-radius: 10px;
+            text-decoration: none; font-weight: 600; transition: background 0.2s;
+        }
+        .btn-retry:hover { background: #dc2626; }
+
+        footer { padding: 1.25rem; text-align: center; color: var(--text-secondary); font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <span class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </span>
+        <span class="logo-text">PteroFsCode</span>
+    </nav>
+
+    <div class="main" id="main">
+        <!-- Loading -->
+        <div class="loading-wrap" id="stateLoading">
+            <div class="spinner"></div>
+            <h2>Mengaktifkan Panel...</h2>
+            <p>Sedang memverifikasi pembayaran dan membuat panel kamu.<br>Harap tunggu sebentar.</p>
+        </div>
+    </div>
+
+    <footer>© 2026 PteroFsCode. All rights reserved.</footer>
+
+    <script>
+        const BACKEND_URL = ''; // Kosongkan jika frontend & backend 1 domain, atau isi https://api.domainkamu.com
+
+        function getToken() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('token');
+        }
+
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'Tersalin!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Salin';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function renderSuccess(data) {
+            const main = document.getElementById('main');
+            main.innerHTML = `
+                <div class="success-card">
+                    <div class="card-top">
+                        <div class="checkmark">
+                            <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <h1>Pembayaran Berhasil!</h1>
+                        <p>Panel kamu sudah aktif — ${data.paket}</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="warning-box">
+                            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            Simpan password ini sekarang! Halaman ini hanya bisa dilihat sekali dan tidak bisa dibuka kembali.
+                        </div>
+
+                        <div class="cred-label">Kredensial Login Panel</div>
+                        <div class="cred-grid">
+                            <div class="cred-row">
+                                <div class="cred-row-left">
+                                    <span>URL Panel</span>
+                                    <span id="val-url">${data.panel_url}</span>
+                                </div>
+                                <button class="copy-btn" onclick="copyText('${data.panel_url}', this)">Salin</button>
+                            </div>
+                            <div class="cred-row">
+                                <div class="cred-row-left">
+                                    <span>Email Login</span>
+                                    <span id="val-email">${data.email}</span>
+                                </div>
+                                <button class="copy-btn" onclick="copyText('${data.email}', this)">Salin</button>
+                            </div>
+                            <div class="cred-row">
+                                <div class="cred-row-left">
+                                    <span>Password</span>
+                                    <span id="val-pass">${data.password}</span>
+                                </div>
+                                <button class="copy-btn" onclick="copyText('${data.password}', this)">Salin</button>
+                            </div>
+                            <div class="cred-row">
+                                <div class="cred-row-left">
+                                    <span>Order ID</span>
+                                    <span style="font-size:0.82rem">${data.order_id}</span>
+                                </div>
+                                <button class="copy-btn" onclick="copyText('${data.order_id}', this)">Salin</button>
+                            </div>
+                        </div>
+
+                        <a href="${data.panel_url}" target="_blank" class="btn-panel">
+                            Buka Panel Sekarang →
+                        </a>
+                        <a href="/history" class="btn-history">Lihat Riwayat Transaksi</a>
+                    </div>
+                </div>`;
+        }
+
+        function renderError(msg) {
+            document.getElementById('main').innerHTML = `
+                <div class="error-wrap">
+                    <div class="error-icon">⚠️</div>
+                    <h2>Terjadi Masalah</h2>
+                    <p>${msg}</p>
+                    <a href="/" class="btn-retry">Kembali ke Beranda</a>
+                </div>`;
+        }
+
+        // Polling — cek status sampai panel aktif (maks 3 menit)
+        async function pollSuccess(token, attempt = 0) {
+            if (attempt > 36) { // 36 × 5s = 3 menit
+                renderError('Panel belum aktif setelah 3 menit. Silakan hubungi support dengan menyertakan Order ID kamu.');
+                return;
+            }
+            try {
+                const res  = await fetch(`${BACKEND_URL}/api/success?token=${encodeURIComponent(token)}`);
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    renderSuccess(data.data);
+                    return;
+                }
+                if (res.status === 400 && data.error === 'Panel belum aktif') {
+                    // Masih processing, coba lagi
+                    setTimeout(() => pollSuccess(token, attempt + 1), 5000);
+                    return;
+                }
+                // Error lain (token invalid, expired, dll)
+                renderError(data.error || 'Token tidak valid. Kemungkinan halaman ini sudah pernah dibuka sebelumnya.');
+            } catch {
+                setTimeout(() => pollSuccess(token, attempt + 1), 5000);
+            }
+        }
+
+        // Init
+        const token = getToken();
+        if (!token) {
+            renderError('Token tidak ditemukan. Pastikan kamu membuka link yang benar dari redirect Pakasir.');
+        } else {
+            pollSuccess(token);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebijakan Privasi — PteroFsCode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0f1419; --bg-secondary: #1a1f2e; --bg-card: #1e2532;
+            --border: #2a3441; --text-primary: #ffffff; --text-secondary: #8b92a0;
+            --accent: #ef4444; --accent-hover: #dc2626;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+
+        nav {
+            background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+            padding: 1rem 0; position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem; font-weight: 700; color: var(--text-primary);
+            display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+        }
+        .logo-icon { width: 40px; height: 40px; flex-shrink: 0; }
+        .logo-icon svg { fill: var(--text-primary); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+        .mobile-toggle span { width: 24px; height: 2px; background: var(--text-primary); }
+
+        .doc-wrap { max-width: 780px; margin: 3rem auto 5rem; padding: 0 2rem; }
+
+        .doc-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+        .doc-header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.4rem; }
+        .doc-header p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .doc-section { margin-bottom: 2rem; }
+        .doc-section h2 {
+            font-size: 1.1rem; font-weight: 700; color: var(--accent);
+            margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .doc-section h2 span {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 24px; height: 24px; background: rgba(239,68,68,0.1);
+            border-radius: 6px; font-size: 0.8rem;
+        }
+        .doc-section p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 0.6rem; }
+        .doc-section ul { list-style: none; padding: 0; }
+        .doc-section ul li {
+            color: var(--text-secondary); font-size: 0.95rem; padding: 0.4rem 0;
+            padding-left: 1.25rem; position: relative; line-height: 1.7;
+        }
+        .doc-section ul li::before {
+            content: ''; position: absolute; left: 0; top: 0.75rem;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+        }
+
+        .data-table {
+            width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.88rem;
+        }
+        .data-table th {
+            text-align: left; padding: 0.6rem 0.85rem; background: rgba(239,68,68,0.08);
+            color: var(--text-primary); font-weight: 600; border-bottom: 1px solid var(--border);
+        }
+        .data-table td {
+            padding: 0.6rem 0.85rem; color: var(--text-secondary);
+            border-bottom: 1px solid rgba(42,52,65,0.5);
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+
+        footer {
+            background: var(--bg-secondary); border-top: 1px solid var(--border);
+            padding: 1.5rem 2rem; text-align: center;
+        }
+        footer p { color: var(--text-secondary); font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .nav-links.active {
+                display: flex; flex-direction: column; position: fixed;
+                top: 65px; left: 0; width: 100%; background: var(--bg-secondary);
+                padding: 2rem; border-top: 1px solid var(--border);
+            }
+            .data-table { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </span>
+                PteroFsCode
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="/history">Riwayat</a></li>
+                <li><a href="https://neolabsofficial.my.id">Script bot</a></li>
+                <li><a href="https://zass.cloud/komunitas">Community</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="doc-wrap">
+        <div class="doc-header">
+            <h1>Kebijakan Privasi</h1>
+            <p>Terakhir diperbarui: 17 Maret 2026 &nbsp;·&nbsp; Berlaku untuk semua pengguna PteroFsCode</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>1</span> Pendahuluan</h2>
+            <p>PteroFsCode berkomitmen untuk melindungi privasi pengguna. Kebijakan ini menjelaskan data apa yang kami kumpulkan, bagaimana kami menggunakannya, dan hak-hak Anda terkait data tersebut.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>2</span> Data yang Kami Kumpulkan</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Jenis Data</th>
+                        <th>Contoh</th>
+                        <th>Tujuan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Identitas</td>
+                        <td>Username, email</td>
+                        <td>Pembuatan akun panel</td>
+                    </tr>
+                    <tr>
+                        <td>Transaksi</td>
+                        <td>Order ID, paket, harga</td>
+                        <td>Verifikasi & riwayat pembelian</td>
+                    </tr>
+                    <tr>
+                        <td>Teknis</td>
+                        <td>IP address, browser</td>
+                        <td>Keamanan & pencegahan fraud</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Kami <strong style="color:var(--text-primary)">tidak</strong> menyimpan informasi kartu kredit, nomor rekening, atau kata sandi pembayaran Anda. Data tersebut dikelola sepenuhnya oleh Pakasir.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>3</span> Penggunaan Data</h2>
+            <p>Data yang dikumpulkan digunakan untuk:</p>
+            <ul>
+                <li>Memproses pembelian dan membuat panel Pterodactyl secara otomatis</li>
+                <li>Mengirimkan informasi akun panel ke email yang didaftarkan</li>
+                <li>Mendeteksi dan mencegah penyalahgunaan layanan</li>
+                <li>Meningkatkan kualitas layanan berdasarkan pola penggunaan</li>
+                <li>Memenuhi kewajiban hukum yang berlaku</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>4</span> Penyimpanan Data</h2>
+            <p>Data transaksi disimpan di browser Anda menggunakan <code style="background:var(--bg-card);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.85rem">localStorage</code>. Data ini hanya bisa diakses dari perangkat Anda dan akan hilang jika Anda menghapus data browser.</p>
+            <p>Untuk layanan dengan backend, data disimpan di server kami dengan enkripsi standar industri.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>5</span> Berbagi Data dengan Pihak Ketiga</h2>
+            <p>Kami dapat berbagi data dengan pihak ketiga berikut dalam lingkup yang diperlukan:</p>
+            <ul>
+                <li><strong style="color:var(--text-primary)">Pakasir</strong> — untuk memproses pembayaran</li>
+                <li><strong style="color:var(--text-primary)">Pterodactyl</strong> — untuk membuat dan mengelola panel server</li>
+                <li><strong style="color:var(--text-primary)">Otoritas hukum</strong> — jika diwajibkan oleh peraturan yang berlaku</li>
+            </ul>
+            <p>Kami tidak menjual data Anda kepada pihak ketiga manapun untuk keperluan pemasaran.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>6</span> Hak Pengguna</h2>
+            <p>Anda memiliki hak untuk:</p>
+            <ul>
+                <li>Mengakses data pribadi yang kami simpan tentang Anda</li>
+                <li>Meminta koreksi data yang tidak akurat</li>
+                <li>Meminta penghapusan data Anda (dengan ketentuan hukum yang berlaku)</li>
+                <li>Menarik persetujuan penggunaan data kapan saja</li>
+            </ul>
+            <p>Untuk mengajukan permintaan terkait data, hubungi tim kami melalui <a href="https://zass.cloud/komunitas" style="color:var(--accent)">saluran resmi</a>.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>7</span> Keamanan Data</h2>
+            <p>Kami menerapkan langkah-langkah keamanan yang wajar untuk melindungi data Anda dari akses tidak sah, perubahan, pengungkapan, atau penghancuran. Namun, tidak ada metode transmisi data melalui internet yang 100% aman.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>8</span> Perubahan Kebijakan</h2>
+            <p>Kebijakan privasi ini dapat diperbarui sewaktu-waktu. Perubahan akan diinformasikan melalui halaman ini dengan memperbarui tanggal efektif di bagian atas. Penggunaan layanan secara berkelanjutan dianggap sebagai penerimaan atas perubahan tersebut.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>9</span> Kontak</h2>
+            <p>Untuk pertanyaan tentang kebijakan privasi ini, silakan hubungi kami melalui <a href="https://zass.cloud/komunitas" style="color:var(--accent)">komunitas</a> atau saluran dukungan resmi lainnya.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 PteroFsCode. All rights reserved. &nbsp;·&nbsp; <a href="/terms" style="color:var(--accent)">Syarat & Ketentuan</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

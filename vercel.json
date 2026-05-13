@@ -1,0 +1,11 @@
+{
+  "rewrites": [
+    { "source": "/history", "destination": "/history.html" },
+    { "source": "/terms",   "destination": "/terms.html"   },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/success", "destination": "/success.html" },
+    { "source": "/panel",   "destination": "/panel.html"   },
+    { "source": "/source",  "destination": "/source.html"  },
+    { "source": "/buy",     "destination": "/buy.html"     }
+  ]
+}

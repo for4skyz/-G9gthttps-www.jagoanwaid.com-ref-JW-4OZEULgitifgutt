@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syarat & Ketentuan — PteroFsCode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0f1419; --bg-secondary: #1a1f2e; --bg-card: #1e2532;
+            --border: #2a3441; --text-primary: #ffffff; --text-secondary: #8b92a0;
+            --accent: #ef4444; --accent-hover: #dc2626;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+
+        nav {
+            background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+            padding: 1rem 0; position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem; font-weight: 700; color: var(--text-primary);
+            display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+        }
+        .logo-icon { width: 40px; height: 40px; flex-shrink: 0; }
+        .logo-icon svg { fill: var(--text-primary); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+        .mobile-toggle span { width: 24px; height: 2px; background: var(--text-primary); }
+
+        .doc-wrap { max-width: 780px; margin: 3rem auto 5rem; padding: 0 2rem; }
+
+        .doc-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+        .doc-header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.4rem; }
+        .doc-header p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .doc-section { margin-bottom: 2rem; }
+        .doc-section h2 {
+            font-size: 1.1rem; font-weight: 700; color: var(--accent);
+            margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .doc-section h2 span {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 24px; height: 24px; background: rgba(239,68,68,0.1);
+            border-radius: 6px; font-size: 0.8rem;
+        }
+        .doc-section p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 0.6rem; }
+        .doc-section ul { list-style: none; padding: 0; }
+        .doc-section ul li {
+            color: var(--text-secondary); font-size: 0.95rem; padding: 0.4rem 0;
+            padding-left: 1.25rem; position: relative; line-height: 1.7;
+        }
+        .doc-section ul li::before {
+            content: ''; position: absolute; left: 0; top: 0.75rem;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+        }
+
+        .highlight-box {
+            background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.2);
+            border-radius: 10px; padding: 1rem 1.25rem; margin: 1rem 0;
+            color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;
+        }
+
+        footer {
+            background: var(--bg-secondary); border-top: 1px solid var(--border);
+            padding: 1.5rem 2rem; text-align: center;
+        }
+        footer p { color: var(--text-secondary); font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .nav-links.active {
+                display: flex; flex-direction: column; position: fixed;
+                top: 65px; left: 0; width: 100%; background: var(--bg-secondary);
+                padding: 2rem; border-top: 1px solid var(--border);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </span>
+                PteroFsCode
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="/history">Riwayat</a></li>
+                <li><a href="https://neolabsofficial.my.id">Script bot</a></li>
+                <li><a href="https://zass.cloud/komunitas">Community</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="doc-wrap">
+        <div class="doc-header">
+            <h1>Syarat & Ketentuan</h1>
+            <p>Terakhir diperbarui: 17 Maret 2026 &nbsp;·&nbsp; Berlaku untuk semua pengguna PteroFsCode</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>1</span> Penerimaan Syarat</h2>
+            <p>Dengan mengakses atau menggunakan layanan PteroFsCode, Anda menyatakan telah membaca, memahami, dan menyetujui seluruh syarat dan ketentuan yang berlaku. Jika Anda tidak menyetujui ketentuan ini, mohon untuk tidak menggunakan layanan kami.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>2</span> Layanan yang Disediakan</h2>
+            <p>PteroFsCode menyediakan layanan panel Pterodactyl dengan pemrosesan pembayaran melalui Pakasir. Layanan mencakup:</p>
+            <ul>
+                <li>Panel Pterodactyl dengan berbagai pilihan paket resource (RAM, CPU, Disk)</li>
+                <li>Pembuatan akun panel secara otomatis setelah pembayaran berhasil</li>
+                <li>Support teknis melalui saluran yang tersedia</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>3</span> Pembayaran & Harga</h2>
+            <p>Seluruh transaksi diproses melalui payment gateway Pakasir. Harga yang tercantum adalah harga final dalam Rupiah (IDR).</p>
+            <ul>
+                <li>Pembayaran dianggap sah setelah dikonfirmasi oleh sistem Pakasir</li>
+                <li>Harga dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya</li>
+                <li>Satu email hanya dapat digunakan untuk satu pembelian panel</li>
+                <li>PteroFsCode tidak menyimpan informasi kartu kredit atau detail rekening bank Anda</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>4</span> Garansi & Refund</h2>
+            <div class="highlight-box">
+                Kami memberikan garansi 100% uang kembali apabila panel tidak dibuat dalam waktu 24 jam setelah pembayaran berhasil dikonfirmasi.
+            </div>
+            <ul>
+                <li>Refund hanya berlaku jika panel tidak aktif dalam 24 jam setelah pembayaran</li>
+                <li>Refund tidak berlaku jika panel sudah aktif dan digunakan</li>
+                <li>Proses refund membutuhkan waktu 3–7 hari kerja</li>
+                <li>Untuk mengajukan refund, hubungi support dengan menyertakan bukti pembayaran dan nomor invoice</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>5</span> Penggunaan yang Dilarang</h2>
+            <p>Anda dilarang menggunakan panel untuk:</p>
+            <ul>
+                <li>Aktivitas ilegal atau melanggar hukum yang berlaku di Indonesia</li>
+                <li>Serangan DDoS, spam, atau aktivitas berbahaya lainnya</li>
+                <li>Mining cryptocurrency tanpa izin tertulis</li>
+                <li>Menyebarkan malware, virus, atau konten berbahaya</li>
+                <li>Melanggar hak kekayaan intelektual pihak ketiga</li>
+            </ul>
+            <p>Pelanggaran dapat mengakibatkan penghentian layanan tanpa refund.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>6</span> Ketersediaan Layanan</h2>
+            <p>Kami berupaya menjaga uptime layanan setinggi mungkin, namun tidak menjamin ketersediaan layanan 100% tanpa gangguan. Pemeliharaan terjadwal akan diinformasikan sebelumnya melalui saluran resmi kami.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>7</span> Perubahan Ketentuan</h2>
+            <p>PteroFsCode berhak mengubah syarat dan ketentuan ini sewaktu-waktu. Perubahan signifikan akan diinformasikan melalui halaman ini. Penggunaan layanan secara berkelanjutan dianggap sebagai penerimaan atas perubahan tersebut.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2><span>8</span> Kontak</h2>
+            <p>Jika Anda memiliki pertanyaan mengenai syarat dan ketentuan ini, silakan hubungi tim support kami melalui <a href="https://zass.cloud/komunitas" style="color:var(--accent)">komunitas</a> atau saluran resmi lainnya.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 PteroFsCode. All rights reserved. &nbsp;·&nbsp; <a href="/privacy" style="color:var(--accent)">Kebijakan Privasi</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

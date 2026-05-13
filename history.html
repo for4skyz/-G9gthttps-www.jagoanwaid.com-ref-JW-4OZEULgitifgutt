@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Transaksi — PteroFsCode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0f1419;
+            --bg-secondary: #1a1f2e;
+            --bg-card: #1e2532;
+            --bg-input: #151b26;
+            --border: #2a3441;
+            --text-primary: #ffffff;
+            --text-secondary: #8b92a0;
+            --accent: #ef4444;
+            --accent-hover: #dc2626;
+            --green: #22c55e;
+            --yellow: #f59e0b;
+            --gray: #6b7280;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem; font-weight: 700; color: var(--text-primary);
+            display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+        }
+        .logo-icon { width: 40px; height: 40px; flex-shrink: 0; }
+        .logo-icon svg { fill: var(--text-primary); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+        .mobile-toggle span { width: 24px; height: 2px; background: var(--text-primary); transition: all 0.3s; }
+
+        .page-header {
+            max-width: 900px; margin: 2.5rem auto 1.5rem; padding: 0 2rem;
+        }
+        .page-header h1 { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.25rem; }
+        .page-header p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+        /* Filter bar */
+        .filter-bar {
+            display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 0.45rem 1rem; border-radius: 8px; border: 1px solid var(--border);
+            background: var(--bg-card); color: var(--text-secondary); font-size: 0.85rem;
+            font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s;
+        }
+        .filter-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+        .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+        /* Order card */
+        .order-list { display: flex; flex-direction: column; gap: 1rem; }
+
+        .order-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 14px; padding: 1.25rem 1.5rem;
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 0.5rem 1rem; align-items: start;
+            transition: border-color 0.2s;
+        }
+        .order-item:hover { border-color: #3a4451; }
+
+        .order-left {}
+        .order-id { font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.35rem; font-family: monospace; }
+        .order-paket { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .order-meta {
+            display: flex; gap: 1.25rem; flex-wrap: wrap;
+        }
+        .order-meta span {
+            font-size: 0.8rem; color: var(--text-secondary);
+            display: flex; align-items: center; gap: 0.35rem;
+        }
+        .order-meta svg { width: 13px; height: 13px; stroke: var(--text-secondary); fill: none; flex-shrink: 0; }
+
+        .order-right { text-align: right; }
+        .order-price { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 0.4rem; }
+        .order-date { font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+
+        .badge {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+        }
+        .badge-pending  { background: rgba(245,158,11,0.15); color: var(--yellow); }
+        .badge-success  { background: rgba(34,197,94,0.15);  color: var(--green); }
+        .badge-failed   { background: rgba(239,68,68,0.15);  color: var(--accent); }
+        .badge svg { width: 11px; height: 11px; fill: currentColor; stroke: none; }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center; padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+        .empty-state svg { width: 56px; height: 56px; stroke: var(--border); fill: none; margin-bottom: 1rem; }
+        .empty-state h3 { font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .empty-state p { font-size: 0.9rem; }
+        .empty-state a {
+            display: inline-block; margin-top: 1.25rem; padding: 0.7rem 1.5rem;
+            background: var(--accent); color: #fff; border-radius: 10px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .empty-state a:hover { background: var(--accent-hover); }
+
+        /* Clear button */
+        .action-bar { display: flex; justify-content: flex-end; margin-bottom: 0.75rem; }
+        .btn-clear {
+            padding: 0.45rem 1rem; border-radius: 8px; border: 1px solid var(--border);
+            background: transparent; color: var(--text-secondary); font-size: 0.82rem;
+            font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-clear:hover { border-color: var(--accent); color: var(--accent); }
+
+        @media (max-width: 600px) {
+            .order-item { grid-template-columns: 1fr; }
+            .order-right { text-align: left; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .nav-links.active {
+                display: flex; flex-direction: column; position: fixed;
+                top: 65px; left: 0; width: 100%; background: var(--bg-secondary);
+                padding: 2rem; border-top: 1px solid var(--border);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                </span>
+                PteroFsCode
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="/history" class="active">Riwayat</a></li>
+                <li><a href="https://neolabsofficial.my.id">Script bot</a></li>
+                <li><a href="https://zass.cloud/komunitas">Community</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>Riwayat Transaksi</h1>
+        <p>Semua transaksi pembelian panel yang pernah kamu lakukan.</p>
+    </div>
+
+    <div class="content">
+        <div class="filter-bar" id="filterBar">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="pending">Menunggu</button>
+            <button class="filter-btn" data-filter="success">Sukses</button>
+            <button class="filter-btn" data-filter="failed">Gagal</button>
+        </div>
+
+        <div class="action-bar" id="actionBar" style="display:none">
+            <button class="btn-clear" id="btnClear">Hapus Semua Riwayat</button>
+        </div>
+
+        <div class="order-list" id="orderList"></div>
+    </div>
+
+    <script>
+        // ── Config ─────────────────────────────────────────────────────────────
+        // Kosongkan jika frontend & backend 1 domain
+        const BACKEND_URL = '';
+
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        const PAKET_LABEL = {
+            ram1: 'Panel 1GB', ram2: 'Panel 2GB', ram3: 'Panel 3GB',
+            ram4: 'Panel 4GB', ram5: 'Panel 5GB', unli: 'Panel UNLIMITED'
+        };
+
+        let currentFilter = 'all';
+        const successTokens = {};
+
+        function formatDate(iso) {
+            if (!iso) return '—';
+            const d = new Date(iso);
+            return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })
+                + ' ' + d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function formatPrice(n) { return 'Rp ' + parseInt(n).toLocaleString('id-ID'); }
+
+        function badgeHTML(status) {
+            if (status === 'success') return `<span class="badge badge-success"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg>Sukses</span>`;
+            if (status === 'failed')  return `<span class="badge badge-failed"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>Gagal</span>`;
+            return `<span class="badge badge-pending"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="3.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>Menunggu</span>`;
+        }
+
+        function btnKredensial(o) {
+            const token = successTokens[o.order_id];
+            if (o.status === 'success' && token) {
+                return `<a href="/success?token=${encodeURIComponent(token)}" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.5rem;padding:0.45rem 0.9rem;background:var(--accent);color:#fff;border-radius:8px;font-size:0.8rem;font-weight:600;text-decoration:none">&#128273; Lihat Kredensial Panel</a>`;
+            }
+            if (o.status === 'success') return `<span style="font-size:0.78rem;color:var(--text-secondary);margin-top:0.4rem;display:block">Token kredensial sudah digunakan / expired</span>`;
+            if (o.status === 'pending' || o.status === 'processing') return `<span style="font-size:0.78rem;color:var(--text-secondary);margin-top:0.4rem;display:block">&#9203; Menunggu konfirmasi pembayaran...</span>`;
+            return '';
+        }
+
+        function renderOrders() {
+            const all      = JSON.parse(localStorage.getItem('pteroFsCode_orders') || '[]');
+            const filtered = currentFilter === 'all' ? all : all.filter(o => o.status === currentFilter);
+            const list     = document.getElementById('orderList');
+            document.getElementById('actionBar').style.display = all.length ? 'flex' : 'none';
+
+            if (!filtered.length) {
+                list.innerHTML = `<div class="empty-state">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                        <rect x="9" y="3" width="6" height="4" rx="1"/>
+                    </svg>
+                    <h3>${currentFilter === 'all' ? 'Belum ada transaksi' : 'Tidak ada transaksi ' + currentFilter}</h3>
+                    <p>${currentFilter === 'all' ? 'Transaksi pembelian panel kamu akan muncul di sini.' : 'Coba filter lain.'}</p>
+                    ${currentFilter === 'all' ? '<a href="/">Beli Sekarang</a>' : ''}
+                </div>`;
+                return;
+            }
+
+            list.innerHTML = filtered.map(o => `
+                <div class="order-item" id="item-${o.order_id}">
+                    <div class="order-left">
+                        <div class="order-id">${o.order_id || '—'}</div>
+                        <div class="order-paket">${PAKET_LABEL[o.paket] || o.paket}</div>
+                        <div class="order-meta">
+                            <span><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>${o.username}</span>
+                            <span><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>${o.email}</span>
+                            <span><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/></svg>RAM ${o.ram} · CPU ${o.cpu === 'UNLIMITED' ? '∞' : o.cpu + '%'} · Disk ${o.disk}</span>
+                        </div>
+                        ${btnKredensial(o)}
+                    </div>
+                    <div class="order-right">
+                        <div class="order-price">${formatPrice(o.price)}</div>
+                        <div class="order-date">${formatDate(o.created_at)}</div>
+                        ${badgeHTML(o.status)}
+                    </div>
+                </div>`).join('');
+        }
+
+        async function pollPendingOrders() {
+            const all     = JSON.parse(localStorage.getItem('pteroFsCode_orders') || '[]');
+            const pending = all.filter(o => o.status === 'pending' || o.status === 'processing');
+            if (!pending.length) return;
+
+            for (const order of pending) {
+                try {
+                    const res  = await fetch(`${BACKEND_URL}/api/orders/${order.order_id}`);
+                    if (!res.ok) continue;
+                    const data = await res.json();
+
+                    if (data.status !== order.status) {
+                        const stored = JSON.parse(localStorage.getItem('pteroFsCode_orders') || '[]');
+                        const idx = stored.findIndex(o => o.order_id === order.order_id);
+                        if (idx !== -1) { stored[idx].status = data.status; localStorage.setItem('pteroFsCode_orders', JSON.stringify(stored)); }
+                    }
+                    if (data.success_token) successTokens[order.order_id] = data.success_token;
+                    if (data.status !== order.status || data.success_token) renderOrders();
+                } catch (_) {}
+            }
+        }
+
+        document.getElementById('filterBar').addEventListener('click', e => {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
+            renderOrders();
+        });
+
+        document.getElementById('btnClear').addEventListener('click', () => {
+            if (confirm('Hapus semua riwayat transaksi?')) {
+                localStorage.removeItem('pteroFsCode_orders');
+                renderOrders();
+            }
+        });
+
+        renderOrders();
+        pollPendingOrders();
+        setInterval(pollPendingOrders, 5000);
+    </script>
+
+</body>
+</html>
