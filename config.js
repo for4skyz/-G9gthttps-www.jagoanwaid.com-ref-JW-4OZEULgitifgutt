@@ -12,8 +12,8 @@ const CONFIG = {
   // Dashboard: https://app.pakasir.com
   // Ambil Slug & API Key dari halaman detail Proyek kamu
   // ─────────────────────────────────────────────────────────────
-  PAKASIR_PROJECT  : 'SLUG_PROYEK_PAKASIR',
-  PAKASIR_API_KEY  : 'ISI_API_KEY_PAKASIR_KAMU',
+  PAKASIR_PROJECT  : 'autoorderbarang',
+  PAKASIR_API_KEY  : 'KUy9vFIWf6uQcfoCHQycUetnZbtJizQN',
 
   // BASE_QRIS: static QRIS kamu dari DANA/GoPay/dll
   // Cara dapat: buka DANA > Terima > scan QR dengan decoder (zxing.org) > copy string
