@@ -36,7 +36,7 @@
         .step-num{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;transition:all .3s;background:var(--bg)}
         .step-item.active .step-num{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.08)}
         .step-item.done .step-num{border-color:var(--green);background:var(--green);color:#fff}
-        .step-line{flex:1;height:1px;background:var(--border);margin:0 .5rem;max-width:60px;transition:background .3s}
+        .step-line{flex:1;height:1px;background:var(--border);margin:0 .5rem;max-width:60px}
         .step-line.done{background:var(--green)}
 
         /* STATES */
@@ -50,7 +50,7 @@
         .card-head-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
         .card-head-title{font-size:1.1rem;font-weight:800}
         .card-price .cp-amount{font-size:1.5rem;font-weight:900;color:var(--red);line-height:1}
-        .card-price .cp-once{font-size:.68rem;color:var(--muted);text-align:right;margin-top:.1rem}
+        .card-price .cp-once{font-size:.68rem;color:var(--muted);margin-top:.1rem;text-align:right}
         .card-body{padding:1.5rem 1.75rem}
 
         /* FORM */
@@ -60,11 +60,11 @@
         .f-input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:11px;padding:.8rem 1rem;color:var(--text);font-size:.92rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s,box-shadow .2s}
         .f-input:focus{border-color:rgba(239,68,68,.5);box-shadow:0 0 0 3px rgba(239,68,68,.07)}
         .f-input::placeholder{color:var(--muted)}
-        .f-input.err{border-color:var(--red)}
+        .f-input.err{border-color:rgba(239,68,68,.6)!important}
         .f-hint{font-size:.73rem;color:var(--muted);margin-top:.35rem}
 
-        /* ORDER PREVIEW */
-        .preview-box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;margin-bottom:1.2rem;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .3s}
+        /* PREVIEW */
+        .preview-box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;margin-bottom:1.2rem;max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s;opacity:0}
         .preview-box.show{max-height:300px;opacity:1}
         .pb-title{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.6rem}
         .pb-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.22rem 0;border-bottom:1px solid var(--border)}
@@ -77,32 +77,38 @@
 
         /* BUTTONS */
         .btn-primary{width:100%;padding:.88rem;background:linear-gradient(135deg,var(--red),var(--red2));border:none;border-radius:13px;color:#fff;font-size:.95rem;font-weight:800;font-family:'Inter',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:all .3s;box-shadow:0 6px 20px rgba(239,68,68,.3)}
-        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(239,68,68,.45)}
+        .btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px rgba(239,68,68,.45)}
+        .btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
         .btn-primary svg{width:17px;height:17px;stroke:#fff;fill:none}
         .btn-meta{display:flex;justify-content:center;gap:1.4rem;margin-top:.85rem;flex-wrap:wrap}
         .bm-item{display:flex;align-items:center;gap:.3rem;font-size:.73rem;color:var(--muted)}
         .bm-item svg{width:12px;height:12px;stroke:currentColor;fill:none}
 
         /* WAITING STATE */
-        .waiting-body{padding:2.5rem 1.75rem;text-align:center}
-        .pulse-ring{width:80px;height:80px;border-radius:50%;border:3px solid rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative;animation:pulse-ring 2s ease infinite}
-        .pulse-ring::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(239,68,68,.1);animation:pulse-ring 2s ease .5s infinite}
-        @keyframes pulse-ring{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:.8}}
-        .pulse-ring svg{width:36px;height:36px;stroke:var(--red);fill:none}
-        .waiting-body h2{font-size:1.2rem;font-weight:800;margin-bottom:.5rem}
-        .waiting-body p{color:var(--muted2);font-size:.88rem;line-height:1.65;margin-bottom:1.5rem}
-        .order-info-box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:.28rem;text-align:left}
-        .oi-row{display:flex;justify-content:space-between;font-size:.82rem}
-        .oi-row span:first-child{color:var(--muted2)}
-        .oi-row span:last-child{font-weight:600}
-        .oi-row.oi-total span:last-child{color:var(--red);font-weight:800}
-        .btn-pakasir{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.88rem;background:linear-gradient(135deg,var(--red),var(--red2));border:none;border-radius:13px;color:#fff;font-size:.95rem;font-weight:800;font-family:'Inter',sans-serif;cursor:pointer;text-decoration:none;transition:all .3s;box-shadow:0 6px 20px rgba(239,68,68,.3);margin-bottom:.65rem}
-        .btn-pakasir:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(239,68,68,.45)}
-        .btn-pakasir svg{width:16px;height:16px;stroke:#fff;fill:none}
-        .btn-back-form{width:100%;padding:.68rem;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--muted2);font-size:.88rem;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s}
-        .btn-back-form:hover{border-color:var(--border2);color:var(--text)}
-        .pakasir-note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.55rem;line-height:1.5;display:flex;align-items:center;justify-content:center;gap:.3rem}
-        .pakasir-note svg{width:12px;height:12px;stroke:var(--green);fill:none;flex-shrink:0}
+        .wait-body{padding:2.5rem 1.75rem;text-align:center}
+        .wait-spinner{width:56px;height:56px;border:4px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 1.3rem}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .wait-body h2{font-size:1.15rem;font-weight:800;margin-bottom:.4rem}
+        .wait-body p{font-size:.85rem;color:var(--muted2);line-height:1.6;margin-bottom:1.5rem}
+        .wait-order{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;text-align:left;margin-bottom:1.2rem;display:flex;flex-direction:column;gap:.28rem}
+        .wo-row{display:flex;justify-content:space-between;font-size:.82rem}
+        .wo-row span:first-child{color:var(--muted2)}
+        .wo-row span:last-child{font-weight:600}
+        .wo-row.wo-total span:last-child{color:var(--red);font-weight:800}
+        .btn-check-pay{width:100%;padding:.82rem;background:linear-gradient(135deg,var(--red),var(--red2));border:none;border-radius:13px;color:#fff;font-size:.92rem;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:all .3s;margin-bottom:.55rem;box-shadow:0 6px 20px rgba(239,68,68,.25)}
+        .btn-check-pay:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 28px rgba(239,68,68,.4)}
+        .btn-check-pay:disabled{opacity:.5;cursor:not-allowed;transform:none}
+        .btn-check-pay svg{width:15px;height:15px;stroke:#fff;fill:none}
+        .btn-cancel{width:100%;padding:.65rem;background:transparent;border:1px solid var(--border);border-radius:13px;color:var(--muted2);font-size:.88rem;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s}
+        .btn-cancel:hover{border-color:var(--border2);color:var(--text)}
+        .info-box{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:.7rem 1rem;margin-bottom:1rem;font-size:.8rem;color:var(--yellow);line-height:1.55;display:flex;gap:.5rem;align-items:flex-start}
+        .info-box svg{width:14px;height:14px;stroke:currentColor;fill:none;flex-shrink:0;margin-top:1px}
+        .toast{border-radius:9px;padding:.5rem .85rem;margin-top:.5rem;font-size:.78rem;text-align:center;display:none;border:1px solid}
+        .toast.show{display:block}
+        .toast.warn{border-color:var(--yellow);color:var(--yellow);background:rgba(245,158,11,.07)}
+        .toast.err{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.07)}
+        .toast.ok{border-color:var(--green);color:var(--green);background:rgba(34,197,94,.07)}
+        .spin-sm{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
 
         /* SUCCESS STATE */
         .success-head{padding:2rem 1.75rem 1.2rem;text-align:center}
@@ -122,9 +128,9 @@
         .receipt-rows{padding:.65rem 1rem;display:flex;flex-direction:column;gap:.28rem}
         .rc-row{display:flex;justify-content:space-between;font-size:.81rem}
         .rc-row span:first-child{color:var(--muted2)}
-        .rc-row span:last-child{font-weight:600;text-align:right}
+        .rc-row span:last-child{font-weight:600;font-family:monospace;font-size:.79rem}
         .rc-row.rc-sep{border-top:1px dashed var(--border);padding-top:.32rem;margin-top:.08rem}
-        .rc-row.rc-total span:last-child{color:var(--red);font-weight:800;font-size:.88rem}
+        .rc-row.rc-total span:last-child{color:var(--red);font-weight:800;font-family:'Inter',sans-serif;font-size:.87rem}
         .dl-box{margin:0 1.5rem 1rem;background:linear-gradient(135deg,rgba(34,197,94,.07),rgba(34,197,94,.03));border:1px solid rgba(34,197,94,.18);border-radius:14px;padding:1.1rem 1.2rem}
         .dl-box-top{display:flex;align-items:center;gap:.55rem;margin-bottom:.65rem}
         .dl-icon{width:38px;height:38px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -145,7 +151,7 @@
         .sc-head{padding:.75rem 1rem;border-bottom:1px solid var(--border);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);display:flex;align-items:center;gap:.4rem}
         .sc-head svg{width:12px;height:12px;stroke:currentColor;fill:none}
         .sc-body{padding:.75rem 1rem;display:flex;flex-direction:column;gap:.5rem}
-        .si-row{display:flex;align-items:flex-start;gap:.6rem}
+        .si-row{display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem}
         .si-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
         .si-icon svg{width:13px;height:13px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
         .si-text strong{display:block;font-size:.8rem;font-weight:700;margin-bottom:.08rem}
@@ -180,13 +186,22 @@
 <div class="main">
     <div class="steps-wrap">
 
-        <!-- Step bar -->
+        <!-- STEP BAR -->
         <div class="step-bar">
-            <div class="step-item active" id="si1"><div class="step-num" id="sn1">1</div><span>Isi Data</span></div>
-            <div class="step-line" id="sl1"></div>
-            <div class="step-item" id="si2"><div class="step-num" id="sn2">2</div><span>Bayar</span></div>
-            <div class="step-line" id="sl2"></div>
-            <div class="step-item" id="si3"><div class="step-num" id="sn3">3</div><span>Download</span></div>
+            <div class="step-item active" id="stepItem1">
+                <div class="step-num" id="stepNum1">1</div>
+                <span>Isi Data</span>
+            </div>
+            <div class="step-line" id="stepLine1"></div>
+            <div class="step-item" id="stepItem2">
+                <div class="step-num" id="stepNum2">2</div>
+                <span>Bayar QRIS</span>
+            </div>
+            <div class="step-line" id="stepLine2"></div>
+            <div class="step-item" id="stepItem3">
+                <div class="step-num" id="stepNum3">3</div>
+                <span>Download</span>
+            </div>
         </div>
 
         <!-- STATE 1: FORM -->
@@ -216,7 +231,7 @@
                             Alamat Email
                         </div>
                         <input class="f-input" id="fEmail" type="email" placeholder="email@kamu.com" oninput="updatePreview()">
-                        <div class="f-hint">Bukti transaksi tersedia di halaman ini setelah bayar</div>
+                        <div class="f-hint">Bukti transaksi tersedia di halaman ini setelah kembali dari pembayaran</div>
                     </div>
 
                     <hr class="divider">
@@ -229,50 +244,49 @@
                         <div class="pb-row pb-total"><span>Total</span><span>Rp 200.000</span></div>
                     </div>
 
-                    <button class="btn-primary" onclick="handleSubmit()">
+                    <button class="btn-primary" id="btnLanjut" onclick="handleSubmit()">
                         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
                             <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/>
+                            <rect x="19" y="14" width="2" height="2"/>
                         </svg>
-                        Lanjut ke Pembayaran
+                        Lanjut ke Pembayaran QRIS
                     </button>
 
                     <div class="btn-meta">
-                        <div class="bm-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Pembayaran aman via Pakasir</div>
+                        <div class="bm-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Pembayaran aman</div>
                         <div class="bm-item"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Download instan</div>
+                        <div class="bm-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Via Pakasir</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- STATE 2: WAITING (sebelum redirect ke Pakasir) -->
-        <div class="state" id="sWaiting">
+        <!-- STATE 2: WAITING (setelah redirect balik dari Pakasir) -->
+        <div class="state" id="sWait">
             <div class="card">
-                <div class="waiting-body">
-                    <div class="pulse-ring">
-                        <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-                            <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/>
-                            <rect x="19" y="14" width="2" height="2"/>
-                        </svg>
-                    </div>
-                    <h2>Siap Bayar!</h2>
-                    <p>Kamu akan diarahkan ke halaman pembayaran Pakasir.<br>Setelah bayar, kamu otomatis kembali ke sini dan file langsung bisa didownload.</p>
+                <div class="wait-body">
+                    <div class="wait-spinner"></div>
+                    <h2>Menunggu Konfirmasi Pembayaran</h2>
+                    <p>Kamu sudah diarahkan ke halaman QRIS Pakasir.<br>Setelah scan & bayar, kembali ke halaman ini lalu klik tombol di bawah.</p>
 
-                    <div class="order-info-box" id="orderInfoBox"></div>
-
-                    <a id="btnGoPakasir" href="#" class="btn-pakasir">
+                    <div class="info-box">
                         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
                         </svg>
-                        Bayar Sekarang via Pakasir
-                    </a>
-                    <button class="btn-back-form" onclick="backToForm()">← Kembali & Edit Data</button>
-                    <div class="pakasir-note">
-                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Kamu akan diarahkan ke halaman resmi Pakasir — aman & terpercaya
+                        Halaman QRIS sudah terbuka di tab baru. Scan QR-nya, lalu kembali ke sini dan klik "Saya Sudah Bayar".
                     </div>
+
+                    <div class="wait-order" id="waitOrderInfo"></div>
+
+                    <button class="btn-check-pay" id="btnSudahBayar" onclick="checkStatus()">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        Saya Sudah Bayar — Cek Status
+                    </button>
+                    <button class="btn-cancel" onclick="cancelOrder()">Batal & Mulai Ulang</button>
+                    <div class="toast" id="toast"></div>
                 </div>
             </div>
         </div>
@@ -346,7 +360,7 @@
                 </div>
                 <div class="si-row">
                     <div class="si-icon" style="background:rgba(139,92,246,.1)"><svg style="stroke:#8b5cf6" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-                    <div class="si-text"><strong>Integrasi Pakasir QRIS</strong><span>Vercel proxy sudah siap</span></div>
+                    <div class="si-text"><strong>Integrasi Pakasir QRIS</strong><span>Vercel proxy siap pakai</span></div>
                 </div>
                 <div class="si-row">
                     <div class="si-icon" style="background:rgba(6,182,212,.1)"><svg style="stroke:#06b6d4" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
@@ -370,62 +384,64 @@
             </div>
             <div class="sc-body">
                 <div class="si-row">
-                    <div class="si-icon" style="background:rgba(239,68,68,.1)"><svg style="stroke:#ef4444" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
-                    <div class="si-text"><strong>Isi nama & email</strong><span>Lalu klik lanjut</span></div>
+                    <div class="si-icon" style="background:rgba(239,68,68,.1)"><svg style="stroke:#ef4444" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <div class="si-text"><strong>1. Isi form & klik Lanjut</strong><span>Halaman QRIS terbuka di tab baru</span></div>
                 </div>
                 <div class="si-row">
-                    <div class="si-icon" style="background:rgba(139,92,246,.1)"><svg style="stroke:#8b5cf6" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-                    <div class="si-text"><strong>Bayar di halaman Pakasir</strong><span>QRIS / VA / dll</span></div>
+                    <div class="si-icon" style="background:rgba(139,92,246,.1)"><svg style="stroke:#8b5cf6" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+                    <div class="si-text"><strong>2. Scan QR & bayar</strong><span>GoPay, OVO, DANA, m-Banking</span></div>
                 </div>
                 <div class="si-row">
-                    <div class="si-icon" style="background:rgba(34,197,94,.1)"><svg style="stroke:#22c55e" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-                    <div class="si-text"><strong>Balik & download</strong><span>File langsung tersedia</span></div>
+                    <div class="si-icon" style="background:rgba(34,197,94,.1)"><svg style="stroke:#22c55e" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                    <div class="si-text"><strong>3. Kembali & klik Sudah Bayar</strong><span>Download langsung tersedia</span></div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <script>
 const fmtRp = n => 'Rp ' + parseInt(n).toLocaleString('id-ID');
 const $ = id => document.getElementById(id);
 
-// ── STEP UI ───────────────────────────────────────────────
+// ── STEP UI ──────────────────────────────────────────────
 function setStep(n) {
     for (let i = 1; i <= 3; i++) {
-        const item = $('si' + i), num = $('sn' + i);
+        const item = $('stepItem'+i), num = $('stepNum'+i);
         item.classList.remove('active','done');
         if (i < n)  { item.classList.add('done');  num.innerHTML = '✓'; }
         if (i === n){ item.classList.add('active'); num.textContent = i; }
         if (i > n)  { num.textContent = i; }
+        if (i <= 2) $('stepLine'+i).classList.toggle('done', i < n);
     }
-    $('sl1').classList.toggle('done', n > 1);
-    $('sl2').classList.toggle('done', n > 2);
 }
 
 function showState(id) {
-    ['sForm','sWaiting','sSuccess'].forEach(s => $(s).classList.toggle('show', s === id));
+    ['sForm','sWait','sSuccess'].forEach(s => $(s).classList.toggle('show', s === id));
 }
 
-// ── PREVIEW ───────────────────────────────────────────────
 function updatePreview() {
-    const name  = $('fName').value.trim();
-    const email = $('fEmail').value.trim();
+    const name = $('fName').value.trim(), email = $('fEmail').value.trim();
+    const box = $('previewBox');
     if (name || email) {
         $('pvName').textContent  = name  || '—';
         $('pvEmail').textContent = email || '—';
-        $('previewBox').classList.add('show');
+        box.classList.add('show');
     } else {
-        $('previewBox').classList.remove('show');
+        box.classList.remove('show');
     }
 }
 
-function backToForm() {
-    showState('sForm');
-    setStep(1);
+function showToast(msg, type='') {
+    const t = $('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (type ? ' '+type : '');
+    clearTimeout(t._t);
+    t._t = setTimeout(() => t.classList.remove('show'), 4000);
 }
 
-// ── ORDER ─────────────────────────────────────────────────
+// ── ORDER DATA ────────────────────────────────────────────
 let ORDER = null;
 
 // ── STEP 1: SUBMIT ────────────────────────────────────────
@@ -439,83 +455,119 @@ function handleSubmit() {
     $('fEmail').classList.remove('err');
 
     const orderId = 'SRC-' + Date.now() + '-' + Math.random().toString(36).slice(2,5).toUpperCase();
-    const price   = CONFIG.SOURCE_PRICE;
 
-    ORDER = { order_id: orderId, name, email, price, created_at: new Date().toISOString() };
+    ORDER = {
+        order_id   : orderId,
+        name, email,
+        price      : CONFIG.SOURCE_PRICE,
+        created_at : new Date().toISOString()
+    };
 
-    // Simpan ke localStorage untuk dibaca setelah redirect balik
-    localStorage.setItem('pteroFs_srcOrder', JSON.stringify(ORDER));
+    // Simpan ke sessionStorage supaya tidak hilang saat tab fokus balik
+    sessionStorage.setItem('pteroFs_srcOrder', JSON.stringify(ORDER));
 
-    // URL redirect balik ke halaman ini setelah bayar
-    const redirectUrl = window.location.origin + '/buy?paid=1&oid=' + encodeURIComponent(orderId);
+    // Buka halaman pembayaran Pakasir di tab baru — tidak perlu API sama sekali!
+    // Format: https://app.pakasir.com/pay/{slug}/{amount}?order_id=xxx&qris_only=1&redirect=xxx
+    const redirectUrl = encodeURIComponent(window.location.origin + '/buy');
+    const pakasirUrl  = `https://app.pakasir.com/pay/${CONFIG.PAKASIR_PROJECT}/${CONFIG.SOURCE_PRICE}`
+                      + `?order_id=${orderId}&qris_only=1&redirect=${redirectUrl}`;
 
-    // URL halaman bayar Pakasir
-    // Format: https://app.pakasir.com/pay/{slug}/{amount}?order_id={id}&redirect={url}&qris_only=1
-    const pakasirUrl = 'https://app.pakasir.com/pay/'
-        + encodeURIComponent(CONFIG.PAKASIR_PROJECT) + '/'
-        + price
-        + '?order_id=' + encodeURIComponent(orderId)
-        + '&redirect='  + encodeURIComponent(redirectUrl)
-        + '&qris_only=1';
+    window.open(pakasirUrl, '_blank');
 
-    // Tampilkan info order + tombol ke Pakasir
-    $('orderInfoBox').innerHTML = `
-        <div class="oi-row"><span>Order ID</span><span style="font-family:monospace;font-size:.78rem">${orderId}</span></div>
-        <div class="oi-row"><span>Pembeli</span><span>${name}</span></div>
-        <div class="oi-row"><span>Email</span><span>${email}</span></div>
-        <div class="oi-row"><span>Produk</span><span>Source Code PteroFs</span></div>
-        <div class="oi-row oi-total"><span>Total</span><span>${fmtRp(price)}</span></div>`;
+    // Tampilkan ringkasan order di halaman tunggu
+    $('waitOrderInfo').innerHTML = `
+        <div class="wo-row"><span>Order ID</span><span style="font-family:monospace;font-size:.79rem">${orderId}</span></div>
+        <div class="wo-row"><span>Pembeli</span><span>${name}</span></div>
+        <div class="wo-row"><span>Email</span><span>${email}</span></div>
+        <div class="wo-row"><span>Produk</span><span>Source Code PteroFs</span></div>
+        <div class="wo-row wo-total"><span>Total</span><span>${fmtRp(CONFIG.SOURCE_PRICE)}</span></div>`;
 
-    $('btnGoPakasir').href = pakasirUrl;
-
-    showState('sWaiting');
+    showState('sWait');
     setStep(2);
 }
 
-// ── STEP 3: SUCCESS (setelah redirect balik dari Pakasir) ──
-function showSuccess(order) {
+// ── STEP 2: CEK STATUS ────────────────────────────────────
+// Pakai Pakasir Transaction Detail API
+// GET https://app.pakasir.com/api/transactiondetail?project=&amount=&order_id=&api_key=
+async function checkStatus() {
+    const btn = $('btnSudahBayar');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spin-sm"></div> Memeriksa pembayaran…';
+
+    const url = `https://app.pakasir.com/api/transactiondetail`
+              + `?project=${encodeURIComponent(CONFIG.PAKASIR_PROJECT)}`
+              + `&amount=${ORDER.price}`
+              + `&order_id=${encodeURIComponent(ORDER.order_id)}`
+              + `&api_key=${encodeURIComponent(CONFIG.PAKASIR_API_KEY)}`;
+
+    try {
+        const res  = await fetch(url);
+        const data = await res.json();
+
+        const status = data?.transaction?.status || '';
+
+        if (status === 'completed') {
+            showSuccess();
+        } else if (status === 'cancelled') {
+            showToast('Transaksi dibatalkan. Klik "Batal & Mulai Ulang".', 'err');
+            btn.disabled = false;
+            btn.innerHTML = `<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;stroke:#fff;fill:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Saya Sudah Bayar — Cek Status`;
+        } else {
+            showToast('Pembayaran belum terdeteksi. Pastikan sudah scan & konfirmasi, lalu coba lagi.', 'warn');
+            btn.disabled = false;
+            btn.innerHTML = `<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;stroke:#fff;fill:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Saya Sudah Bayar — Cek Status`;
+        }
+    } catch(e) {
+        // CORS error dari transactiondetail — fallback: tanya user konfirmasi manual
+        console.warn('Cek status error:', e);
+        showToast('Tidak bisa cek otomatis. Gunakan tombol di bawah jika sudah bayar.', 'warn');
+        btn.disabled = false;
+        btn.innerHTML = `<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;stroke:#fff;fill:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Saya Sudah Bayar — Cek Status`;
+    }
+}
+
+function cancelOrder() {
+    sessionStorage.removeItem('pteroFs_srcOrder');
+    ORDER = null;
+    showState('sForm');
+    setStep(1);
+}
+
+// ── STEP 3: SUCCESS ───────────────────────────────────────
+function showSuccess() {
     const now = new Date();
     $('receiptRows').innerHTML = `
-        <div class="rc-row"><span>Order ID</span><span>${order.order_id}</span></div>
-        <div class="rc-row"><span>Pembeli</span><span>${order.name}</span></div>
-        <div class="rc-row"><span>Email</span><span>${order.email}</span></div>
+        <div class="rc-row"><span>Order ID</span><span>${ORDER.order_id}</span></div>
+        <div class="rc-row"><span>Pembeli</span><span>${ORDER.name}</span></div>
+        <div class="rc-row"><span>Email</span><span>${ORDER.email}</span></div>
         <div class="rc-row"><span>Produk</span><span>Source Code PteroFs</span></div>
-        <div class="rc-row rc-sep"><span>Harga</span><span>${fmtRp(order.price)}</span></div>
-        <div class="rc-row rc-total"><span>Total Bayar</span><span>${fmtRp(order.price)}</span></div>
+        <div class="rc-row rc-sep rc-total"><span>Total Bayar</span><span>${fmtRp(ORDER.price)}</span></div>
         <div class="rc-row"><span>Waktu</span><span>${now.toLocaleString('id-ID')}</span></div>
         <div class="rc-row"><span>Status</span><span style="color:var(--green);font-weight:800">✓ Lunas</span></div>`;
 
     $('btnDownload').href = CONFIG.SOURCE_DOWNLOAD;
+    sessionStorage.removeItem('pteroFs_srcOrder');
     showState('sSuccess');
     setStep(3);
-
-    // Bersihkan localStorage
-    localStorage.removeItem('pteroFs_srcOrder');
 }
 
-// ── INIT — cek apakah redirect balik dari Pakasir ─────────
-(function init() {
-    const params   = new URLSearchParams(window.location.search);
-    const isPaid   = params.get('paid') === '1';
-    const oid      = params.get('oid');
-
-    if (isPaid && oid) {
-        // Ambil data order dari localStorage
-        let order = null;
-        try { order = JSON.parse(localStorage.getItem('pteroFs_srcOrder')); } catch(e) {}
-
-        if (order && order.order_id === oid) {
-            showSuccess(order);
-        } else {
-            // Order ID cocok tapi data tidak ada di localStorage
-            // Tampilkan success dengan data minimal dari URL
-            showSuccess({ order_id: oid, name: '—', email: '—', price: CONFIG.SOURCE_PRICE });
-        }
-
-        // Bersihkan URL tanpa reload
-        window.history.replaceState({}, '', '/buy');
+// ── RESTORE SESSION (kalau redirect balik dari Pakasir) ───
+window.addEventListener('load', () => {
+    const saved = sessionStorage.getItem('pteroFs_srcOrder');
+    if (saved) {
+        try {
+            ORDER = JSON.parse(saved);
+            $('waitOrderInfo').innerHTML = `
+                <div class="wo-row"><span>Order ID</span><span style="font-family:monospace;font-size:.79rem">${ORDER.order_id}</span></div>
+                <div class="wo-row"><span>Pembeli</span><span>${ORDER.name}</span></div>
+                <div class="wo-row"><span>Email</span><span>${ORDER.email}</span></div>
+                <div class="wo-row"><span>Produk</span><span>Source Code PteroFs</span></div>
+                <div class="wo-row wo-total"><span>Total</span><span>${fmtRp(ORDER.price)}</span></div>`;
+            showState('sWait');
+            setStep(2);
+        } catch(e) { sessionStorage.removeItem('pteroFs_srcOrder'); }
     }
-})();
+});
 </script>
 </body>
 </html>
