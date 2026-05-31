@@ -16,7 +16,6 @@
         }
         body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
         ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-
         nav{background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem 0;position:sticky;top:0;z-index:100}
         .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
         .logo{font-size:1.35rem;font-weight:800;display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--text)}
@@ -24,9 +23,7 @@
         .nav-back{display:flex;align-items:center;gap:.4rem;color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
         .nav-back:hover{color:var(--text)}
         .nav-back svg{width:15px;height:15px;stroke:currentColor;fill:none}
-
         .main{flex:1;padding:2.5rem 1rem 5rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
-
         .state{display:none;width:100%;max-width:420px}
         .state.show{display:block}
 
@@ -36,14 +33,14 @@
         @keyframes spin{to{transform:rotate(360deg)}}
         .s-loading h2{font-size:1.1rem;margin-bottom:.35rem}
         .s-loading p{color:var(--muted);font-size:.86rem}
-        .loading-steps{display:flex;flex-direction:column;gap:.4rem;max-width:260px;margin:.85rem auto 0;text-align:left}
-        .ls-item{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--muted);padding:.3rem 0}
+        .loading-steps{display:flex;flex-direction:column;gap:.35rem;max-width:250px;margin:.85rem auto 0;text-align:left}
+        .ls-item{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--muted)}
         .ls-item.active{color:var(--text)}
         .ls-item.done{color:var(--green)}
         .ls-dot{width:8px;height:8px;border-radius:50%;background:var(--border);flex-shrink:0;transition:all .3s}
-        .ls-item.active .ls-dot{background:var(--red);animation:pulse .8s ease infinite alternate}
+        .ls-item.active .ls-dot{background:var(--red);animation:blink .8s ease infinite alternate}
         .ls-item.done .ls-dot{background:var(--green)}
-        @keyframes pulse{to{transform:scale(1.5)}}
+        @keyframes blink{to{transform:scale(1.5)}}
 
         /* QRIS CARD */
         .qris-card{background:var(--bg3);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.5)}
@@ -51,23 +48,21 @@
         .qc-top-left{display:flex;align-items:center;gap:.45rem;font-weight:800;font-size:.9rem}
         .qc-top-left svg{width:16px;height:16px;stroke:#fff;fill:none}
         .qris-chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:.18rem .6rem;font-size:.68rem;font-weight:800;letter-spacing:.06em}
-
         .qc-summary{padding:.8rem 1.2rem;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:.27rem}
         .qs-row{display:flex;justify-content:space-between;font-size:.81rem}
         .qs-row span:first-child{color:var(--muted)}
         .qs-row span:last-child{font-weight:600}
         .qs-row.qs-sep{border-top:1px dashed var(--border);padding-top:.32rem;margin-top:.05rem}
         .qs-row.qs-total span:last-child{color:var(--red);font-size:.95rem;font-weight:800}
-
         .qc-body{padding:1.1rem 1.2rem}
 
         /* QR IMAGE */
-        .qr-box{background:linear-gradient(135deg,#fff,#f5f5f5);border-radius:14px;padding:14px 14px 22px;display:flex;align-items:center;justify-content:center;margin-bottom:.85rem;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.2);min-height:180px}
-        #qrImg{display:none;border-radius:4px}
-        .qr-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:#ccc;min-width:200px;min-height:150px}
-        .qr-placeholder svg{width:48px;height:48px;stroke:#ddd;fill:none}
-        .qr-placeholder span{font-size:.75rem;color:#bbb}
-        .qr-brand{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:.6rem;font-weight:800;color:#ef4444;letter-spacing:.08em}
+        .qr-box{background:linear-gradient(135deg,#fff,#f5f5f5);border-radius:14px;padding:10px 10px 20px;display:flex;align-items:center;justify-content:center;margin-bottom:.85rem;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.2);min-height:180px}
+        #qrImg{display:none;border-radius:6px;max-width:100%;height:auto}
+        .qr-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:#ccc;min-width:180px;min-height:140px}
+        .qr-ph svg{width:44px;height:44px;stroke:#ddd;fill:none}
+        .qr-ph span{font-size:.75rem;color:#bbb}
+        .qr-brand{position:absolute;bottom:5px;left:0;right:0;text-align:center;font-size:.6rem;font-weight:800;color:#ef4444;letter-spacing:.08em}
 
         .app-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.35rem;margin-bottom:.85rem}
         .app-chip{background:var(--bg4);border:1px solid var(--border);border-radius:6px;padding:.2rem .5rem;font-size:.68rem;font-weight:600;color:var(--muted)}
@@ -83,12 +78,11 @@
         .btn-cek:disabled{opacity:.5;cursor:not-allowed;transform:none}
         .btn-cek svg{width:15px;height:15px;stroke:#fff;fill:none}
         .spin-btn{width:15px;height:15px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
-
         .toast{border-radius:9px;padding:.5rem .85rem;margin-top:.5rem;font-size:.78rem;text-align:center;display:none;border:1px solid}
         .toast.show{display:block}
         .toast.warn{border-color:var(--yellow);color:var(--yellow);background:rgba(245,158,11,.07)}
         .toast.err{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.07)}
-        .btn-batal{width:100%;padding:.6rem;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--muted);font-size:.85rem;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;margin-top:.4rem}
+        .btn-batal{width:100%;padding:.6rem;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--muted);font-size:.85rem;font-family:'Inter',sans-serif;cursor:pointer;margin-top:.4rem}
         .btn-batal:hover{color:var(--text)}
 
         /* PROCESSING */
@@ -144,7 +138,6 @@
     </style>
 </head>
 <body>
-
 <nav>
     <div class="nav-inner">
         <a href="/" class="logo">
@@ -170,12 +163,11 @@
         <div class="s-loading">
             <div class="loader-ring"></div>
             <h2>Menyiapkan QRIS…</h2>
-            <p>Mengambil kode pembayaran dari Pakasir</p>
+            <p>Membuat invoice dari NDy Gateway</p>
             <div class="loading-steps">
-                <div class="ls-item active" id="ls1"><div class="ls-dot"></div>Menghubungi Pakasir…</div>
-                <div class="ls-item" id="ls2"><div class="ls-dot"></div>Membuat transaksi…</div>
-                <div class="ls-item" id="ls3"><div class="ls-dot"></div>Mengambil kode QRIS…</div>
-                <div class="ls-item" id="ls4"><div class="ls-dot"></div>Memuat gambar QR…</div>
+                <div class="ls-item active" id="ls1"><div class="ls-dot"></div>Menghubungi gateway…</div>
+                <div class="ls-item" id="ls2"><div class="ls-dot"></div>Membuat invoice…</div>
+                <div class="ls-item" id="ls3"><div class="ls-dot"></div>Memuat gambar QRIS…</div>
             </div>
         </div>
     </div>
@@ -193,27 +185,24 @@
                 </div>
                 <span class="qris-chip">QRIS</span>
             </div>
-
             <div class="qc-summary" id="qcSummary"></div>
-
             <div class="qc-body">
+                <!-- Gambar QRIS dari NDy Gateway (field: qris_image) -->
                 <div class="qr-box">
-                    <img id="qrImg" alt="QRIS" style="display:none;border-radius:4px">
-                    <div id="qrPlaceholder" class="qr-placeholder">
+                    <img id="qrImg" alt="QRIS">
+                    <div id="qrPh" class="qr-ph">
                         <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
                         </svg>
-                        <span>Memuat QRIS…</span>
+                        <span>Memuat gambar…</span>
                     </div>
-                    <div class="qr-brand">PteroFs · QRIS</div>
+                    <div class="qr-brand">PteroFs · NDy Gateway</div>
                 </div>
-
                 <div class="app-chips">
                     <span class="app-chip">GoPay</span><span class="app-chip">OVO</span>
                     <span class="app-chip">DANA</span><span class="app-chip">ShopeePay</span>
                     <span class="app-chip">LinkAja</span><span class="app-chip">m-Banking</span>
                 </div>
-
                 <div class="timer-row">
                     <div class="timer-left">
                         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -223,12 +212,11 @@
                     </div>
                     <span class="timer-val" id="timerVal">15:00</span>
                 </div>
-
                 <button class="btn-cek" id="btnCek" onclick="cekPembayaran()">
                     <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
                     </svg>
-                    Sudah Bayar — Cek Sekarang
+                    Cek Pembayaran
                 </button>
                 <div class="toast" id="toast"></div>
                 <button class="btn-batal" onclick="window.location.href='/'">Batal & Kembali</button>
@@ -282,9 +270,7 @@
                 </a>
                 <a href="/history" class="btn-hist">Lihat Riwayat Transaksi</a>
                 <div class="email-note">
-                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                     Kredensial sudah dikirim ke email kamu
                 </div>
             </div>
@@ -320,96 +306,76 @@ const fmtRp = n  => 'Rp ' + parseInt(n).toLocaleString('id-ID');
 const $     = id => document.getElementById(id);
 
 const LIMITS = {
-    ram1:{memory:1024,cpu:50,disk:1120}, ram2:{memory:2048,cpu:75,disk:2048},
-    ram3:{memory:3072,cpu:100,disk:3072}, ram4:{memory:4096,cpu:125,disk:4096},
-    ram5:{memory:5120,cpu:150,disk:5120}, unli:{memory:0,cpu:0,disk:0},
+    ram1:{memory:1024,cpu:50,disk:1120},ram2:{memory:2048,cpu:75,disk:2048},
+    ram3:{memory:3072,cpu:100,disk:3072},ram4:{memory:4096,cpu:125,disk:4096},
+    ram5:{memory:5120,cpu:150,disk:5120},unli:{memory:0,cpu:0,disk:0},
 };
 
 function showState(id){
     ['sLoading','sQris','sProcessing','sCreds','sError'].forEach(s=>{
-        $(s).classList.toggle('show', s===id);
+        $(s).classList.toggle('show',s===id);
     });
 }
-function showError(msg){ $('errorMsg').textContent=msg; showState('sError'); }
-function setStep(id,state){ const el=$(id); el.classList.remove('done','active'); if(state) el.classList.add(state); }
-function setLs(id,state){ const el=$(id); el.classList.remove('active','done'); if(state) el.classList.add(state); }
+function showError(msg){$('errorMsg').textContent=msg;showState('sError');}
+function setStep(id,st){const el=$(id);el.classList.remove('done','active');if(st)el.classList.add(st);}
+function setLs(id,st){const el=$(id);el.classList.remove('active','done');if(st)el.classList.add(st);}
 function showToast(msg,type=''){
-    const t=$('toast'); t.textContent=msg; t.className='toast show'+(type?' '+type:'');
-    clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),4000);
+    const t=$('toast');t.textContent=msg;t.className='toast show'+(type?' '+type:'');
+    clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),4000);
 }
 function copyText(text,btn){
     navigator.clipboard.writeText(text).then(()=>{
-        btn.textContent='✓ Tersalin'; btn.classList.add('copied');
-        setTimeout(()=>{ btn.textContent='Salin'; btn.classList.remove('copied'); },2000);
+        btn.textContent='✓ Tersalin';btn.classList.add('copied');
+        setTimeout(()=>{btn.textContent='Salin';btn.classList.remove('copied');},2000);
     });
 }
 
-let ORDER=null, ORDER_AMOUNT=0, timerInterval=null;
+let ORDER=null, INVOICE_ID=null, TOTAL_AMOUNT=0, timerInterval=null;
 
-function startTimer(){
-    let secs=15*60;
+// ── NDy GATEWAY ──────────────────────────────────────────
+// GET /api/v1/invoice?apikey=xxx&amount=xxx
+// Response: { success, invoice_id, amount, fee, total, qris_image, expired_at }
+async function createInvoice(amount){
+    const url=`${CONFIG.NDY_BASE_URL}/api/v1/invoice?apikey=${encodeURIComponent(CONFIG.NDY_API_KEY)}&amount=${parseInt(amount)}`;
+    const res=await fetch(url);
+    const text=await res.text();
+    let data;
+    try{data=JSON.parse(text);}catch(e){throw new Error('Response tidak valid: '+text.slice(0,150));}
+    if(!data.success||!data.qris_image) throw new Error(JSON.stringify(data).slice(0,200));
+    return data; // { invoice_id, amount, fee, total, qris_image, expired_at }
+}
+
+// GET /api/v1/invoice/status?apikey=xxx&invoice_id=xxx
+// Response: { status: "pending"|"paid"|"expired" }
+async function checkInvoice(invoiceId){
+    const url=`${CONFIG.NDY_BASE_URL}/api/v1/invoice/status?apikey=${encodeURIComponent(CONFIG.NDY_API_KEY)}&invoice_id=${encodeURIComponent(invoiceId)}`;
+    const res=await fetch(url);
+    const text=await res.text();
+    let data;
+    try{data=JSON.parse(text);}catch(e){throw new Error('Response tidak valid: '+text.slice(0,150));}
+    return data.status; // "pending" | "paid" | "expired"
+}
+
+function startTimer(expiredAt){
+    const expTime=expiredAt?new Date(expiredAt).getTime():Date.now()+15*60*1000;
     const el=$('timerVal');
     timerInterval=setInterval(()=>{
-        secs--;
+        const secs=Math.max(0,Math.floor((expTime-Date.now())/1000));
         el.textContent=String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');
         el.classList.toggle('urgent',secs<=60);
-        if(secs<=0){ clearInterval(timerInterval); showError('QRIS kadaluarsa. Kembali dan buat order baru.'); }
+        if(secs<=0){clearInterval(timerInterval);showError('QRIS kadaluarsa. Kembali dan buat order baru.');}
     },1000);
 }
 
-function renderSummary(order,fee){
+function renderSummary(order,fee,total){
     $('qcSummary').innerHTML=`
         <div class="qs-row"><span>Username</span><span>${order.username}</span></div>
         <div class="qs-row"><span>Email</span><span>${order.email}</span></div>
         <div class="qs-row"><span>Paket</span><span>${order.paket.toUpperCase()}</span></div>
         <div class="qs-row"><span>RAM / CPU / Disk</span><span>${order.ram} / ${order.cpu}% / ${order.disk}</span></div>
         <div class="qs-row qs-sep"><span>Harga</span><span>${fmtRp(order.price)}</span></div>
-        <div class="qs-row"><span>Biaya QRIS</span><span>${fmtRp(fee||0)}</span></div>
-        <div class="qs-row qs-total"><span>Total Bayar</span><span>${fmtRp(ORDER_AMOUNT)}</span></div>`;
-}
-
-// ── PAKASIR via CORS PROXY ────────────────────────────────
-// corsproxy.io forward request ke Pakasir, balik dengan CORS header
-async function createQris(orderId,amount){
-    const TARGET='https://app.pakasir.com/api/transactioncreate/qris';
-    const PROXY='https://corsproxy.io/?'+encodeURIComponent(TARGET);
-    const res=await fetch(PROXY,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({project:CONFIG.PAKASIR_PROJECT,order_id:orderId,amount:parseInt(amount),api_key:CONFIG.PAKASIR_API_KEY})
-    });
-    const text=await res.text();
-    let data; try{data=JSON.parse(text);}catch(e){throw new Error('Response tidak valid: '+text.slice(0,150));}
-    if(!data.payment) throw new Error(JSON.stringify(data).slice(0,200));
-    return data.payment;
-}
-
-async function checkStatus(orderId,amount){
-    const TARGET=`https://app.pakasir.com/api/transactiondetail?project=${encodeURIComponent(CONFIG.PAKASIR_PROJECT)}&amount=${amount}&order_id=${encodeURIComponent(orderId)}&api_key=${encodeURIComponent(CONFIG.PAKASIR_API_KEY)}`;
-    const PROXY='https://corsproxy.io/?'+encodeURIComponent(TARGET);
-    const res=await fetch(PROXY);
-    const text=await res.text();
-    let data; try{data=JSON.parse(text);}catch(e){throw new Error('Response tidak valid: '+text.slice(0,150));}
-    if(!data.transaction) throw new Error(JSON.stringify(data).slice(0,200));
-    return data.transaction.status;
-}
-
-// ── RENDER QR IMAGE ───────────────────────────────────────
-function renderQr(qrString){
-    const size=Math.min(window.innerWidth-80,240);
-    const img=$('qrImg');
-    const ph=$('qrPlaceholder');
-    img.width=size; img.height=size;
-
-    // Primary: qrserver.com
-    img.src='https://api.qrserver.com/v1/create-qr-code/?data='+encodeURIComponent(qrString)+'&size='+size+'x'+size+'&margin=2';
-    img.onload=()=>{ img.style.display='block'; ph.style.display='none'; };
-    img.onerror=()=>{
-        // Fallback: quickchart.io
-        img.src='https://quickchart.io/qr?text='+encodeURIComponent(qrString)+'&size='+size+'&margin=2';
-        img.onload=()=>{ img.style.display='block'; ph.style.display='none'; };
-        img.onerror=()=>{ ph.querySelector('span').textContent='Gagal load QR. Coba refresh.'; };
-    };
+        <div class="qs-row"><span>Biaya Gateway</span><span>${fmtRp(fee||0)}</span></div>
+        <div class="qs-row qs-total"><span>Total Bayar</span><span>${fmtRp(total)}</span></div>`;
 }
 
 async function cekPembayaran(){
@@ -417,41 +383,41 @@ async function cekPembayaran(){
     btn.disabled=true;
     btn.innerHTML='<div class="spin-btn"></div> Memeriksa…';
     try{
-        const status=await checkStatus(ORDER.order_id,ORDER_AMOUNT);
-        if(status==='completed'){
+        const status=await checkInvoice(INVOICE_ID);
+        if(status==='paid'){
             clearInterval(timerInterval);
             await buatPanel();
-        }else if(status==='cancelled'){
-            showError('Transaksi dibatalkan. Kembali dan buat order baru.');
+        }else if(status==='expired'){
+            showError('QRIS sudah kadaluarsa. Kembali dan buat order baru.');
         }else{
             showToast('Pembayaran belum diterima. Pastikan sudah scan dan konfirmasi.','warn');
             btn.disabled=false;
-            btn.innerHTML='<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;stroke:#fff;fill:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Sudah Bayar — Cek Sekarang';
+            btn.innerHTML='<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;stroke:#fff;fill:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Cek Pembayaran';
         }
     }catch(e){
         showToast('Gagal cek status. Coba lagi.','err');
         btn.disabled=false;
-        btn.innerHTML='<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;stroke:#fff;fill:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Sudah Bayar — Cek Sekarang';
+        btn.innerHTML='<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;stroke:#fff;fill:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Cek Pembayaran';
     }
 }
 
 async function buatPanel(){
     showState('sProcessing');
-    setStep('step-verify','done'); setStep('step-user','active'); await sleep(400);
+    setStep('step-verify','done');setStep('step-user','active');await sleep(400);
     try{
-        const genPass=(l=16)=>{ const c='abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$'; return Array.from(crypto.getRandomValues(new Uint8Array(l))).map(b=>c[b%c.length]).join(''); };
+        const genPass=(l=16)=>{const c='abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$';return Array.from(crypto.getRandomValues(new Uint8Array(l))).map(b=>c[b%c.length]).join('');};
         const password=genPass();
         const userId=await createPteroUser(ORDER.email,ORDER.username,password);
-        setStep('step-user','done'); setStep('step-server','active'); await sleep(400);
+        setStep('step-user','done');setStep('step-server','active');await sleep(400);
         const lim=LIMITS[ORDER.paket]||LIMITS.ram1;
         await createPteroServer(userId,ORDER.username,lim);
-        setStep('step-server','done'); setStep('step-email','active'); await sleep(300);
+        setStep('step-server','done');setStep('step-email','active');await sleep(300);
         await sendEmail(ORDER,password);
         setStep('step-email','done');
         try{
             const h=JSON.parse(localStorage.getItem('pteroFs_orders')||'[]');
             const i=h.findIndex(o=>o.order_id===ORDER.order_id);
-            if(i!==-1){ h[i].status='success'; h[i].panel_url=CONFIG.PTLC; }
+            if(i!==-1){h[i].status='success';h[i].panel_url=CONFIG.PTLC;}
             localStorage.setItem('pteroFs_orders',JSON.stringify(h));
             localStorage.removeItem('pteroFs_currentOrder');
         }catch(e){}
@@ -466,23 +432,20 @@ async function createPteroUser(email,username,password){
     const clean=username.toLowerCase().replace(/[^a-z0-9_]/g,'').slice(0,32)||'user'+Date.now().toString().slice(-6);
     const res=await fetch(`${CONFIG.PTLA}/api/application/users`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${CONFIG.PTLA_KEY}`,'Accept':'application/json'},body:JSON.stringify({email,username:clean,first_name:username,last_name:'User',password})});
     const data=await res.json();
-    if(!res.ok){ if(res.status===422){ const s=Date.now().toString().slice(-4); return createPteroUser(email.replace('@',`+${s}@`),username+s,password); } throw new Error(data?.errors?.[0]?.detail||`Error ${res.status}`); }
+    if(!res.ok){if(res.status===422){const s=Date.now().toString().slice(-4);return createPteroUser(email.replace('@',`+${s}@`),username+s,password);}throw new Error(data?.errors?.[0]?.detail||`Error ${res.status}`);}
     return data.attributes.id;
 }
-
 async function createPteroServer(userId,username,lim){
     const name=username.toLowerCase().replace(/[^a-z0-9]/g,'-').slice(0,20)+'-server';
     const res=await fetch(`${CONFIG.PTLA}/api/application/servers`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${CONFIG.PTLA_KEY}`,'Accept':'application/json'},body:JSON.stringify({name,user:userId,egg:CONFIG.EGG_ID,docker_image:CONFIG.DOCKER_IMAGE,startup:CONFIG.STARTUP_CMD,environment:CONFIG.EGG_ENVIRONMENT,limits:{memory:lim.memory,swap:0,disk:lim.disk,io:500,cpu:lim.cpu},feature_limits:{databases:0,allocations:0,backups:0},deploy:{locations:[CONFIG.LOCATION_ID],dedicated_ip:false,port_range:[]},start_on_completion:false,oom_disabled:false})});
     const data=await res.json();
-    if(!res.ok) throw new Error(data?.errors?.[0]?.detail||`Error ${res.status}`);
+    if(!res.ok)throw new Error(data?.errors?.[0]?.detail||`Error ${res.status}`);
     return data.attributes.id;
 }
-
 async function sendEmail(order,password){
-    try{ emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY); await emailjs.send(CONFIG.EMAILJS_SERVICE_ID,CONFIG.EMAILJS_TEMPLATE_ID,{to_name:order.username,to_email:order.email,panel_url:CONFIG.PTLC,panel_email:order.email,panel_password:password,paket:order.paket.toUpperCase(),order_id:order.order_id,ram:order.ram,disk:order.disk,cpu:order.cpu}); }
-    catch(e){ console.warn('EmailJS:',e); }
+    try{emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);await emailjs.send(CONFIG.EMAILJS_SERVICE_ID,CONFIG.EMAILJS_TEMPLATE_ID,{to_name:order.username,to_email:order.email,panel_url:CONFIG.PTLC,panel_email:order.email,panel_password:password,paket:order.paket.toUpperCase(),order_id:order.order_id,ram:order.ram,disk:order.disk,cpu:order.cpu});}
+    catch(e){console.warn('EmailJS:',e);}
 }
-
 function showCredentials(order,password){
     $('credsSubtitle').textContent=`Panel ${order.paket.toUpperCase()} — ${order.username}`;
     $('btnOpenPanel').href=CONFIG.PTLC;
@@ -491,26 +454,35 @@ function showCredentials(order,password){
     showState('sCreds');
 }
 
-// ── INIT ──────────────────────────────────────────────────
+// ── INIT ─────────────────────────────────────────────────
 (async function init(){
-    try{ ORDER=JSON.parse(localStorage.getItem('pteroFs_currentOrder')); }catch(e){}
-    if(!ORDER?.order_id){ showError('Data order tidak ditemukan. Kembali ke beranda dan isi form pembelian.'); return; }
-    ORDER_AMOUNT=parseInt(ORDER.price);
+    try{ORDER=JSON.parse(localStorage.getItem('pteroFs_currentOrder'));}catch(e){}
+    if(!ORDER?.order_id){showError('Data order tidak ditemukan. Kembali ke beranda dan isi form pembelian.');return;}
 
-    await sleep(400); setLs('ls1','done'); setLs('ls2','active');
-    await sleep(300); setLs('ls2','done'); setLs('ls3','active');
+    await sleep(300);setLs('ls1','done');setLs('ls2','active');
 
     try{
-        const payment=await createQris(ORDER.order_id,ORDER_AMOUNT);
-        ORDER_AMOUNT=parseInt(payment.total_payment||ORDER_AMOUNT);
-        setLs('ls3','done'); setLs('ls4','active');
-        renderSummary(ORDER,payment.fee||0);
-        renderQr(payment.payment_number);
-        await sleep(400);
+        // Buat invoice → dapat qris_image langsung dari NDy Gateway!
+        const inv=await createInvoice(parseInt(ORDER.price));
+
+        INVOICE_ID   = inv.invoice_id;
+        TOTAL_AMOUNT = inv.total;
+
+        setLs('ls2','done');setLs('ls3','active');
+        renderSummary(ORDER,inv.fee||0,inv.total);
+
+        // Tampilkan gambar QRIS dari URL yang dikembalikan NDy Gateway
+        const img=$('qrImg'), ph=$('qrPh');
+        img.src=inv.qris_image;
+        img.onload=()=>{img.style.display='block';ph.style.display='none';setLs('ls3','done');};
+        img.onerror=()=>{ph.querySelector('span').textContent='Gagal load gambar QRIS.';setLs('ls3','done');};
+
+        await sleep(300);
         showState('sQris');
-        startTimer();
+        startTimer(inv.expired_at);
+
     }catch(e){
-        showError('Gagal mengambil QRIS dari Pakasir:\n\n'+e.message+'\n\nPastikan PAKASIR_PROJECT dan PAKASIR_API_KEY di config.js sudah benar.');
+        showError('Gagal membuat invoice:\n\n'+e.message+'\n\nPastikan NDY_API_KEY di config.js sudah benar.');
     }
 })();
 </script>
